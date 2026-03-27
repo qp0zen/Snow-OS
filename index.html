@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SnowOS — Official site</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="snow-bg"></div>
+
+<nav class="glass-nav">
+    <div class="logo">❄️ SnowOS</div>
+    <div class="nav-links">
+        <button class="tab-link active" onclick="openTab(event, 'main')">Home</button>
+        <button class="tab-link" onclick="openTab(event, 'download')">Download</button>
+        <button class="tab-link" onclick="openTab(event, 'docs')">Info</button>
+    </div>
+</nav>
+
+<div class="container">
+    <section id="main" class="tab-content active">
+        <div class="hero">
+            <h1>Glacial speed. <br><span>Clean code.</span></h1>
+            <p>SnowOS — It's a next-generation operating system written in assembly language. It weighs less than a song and runs faster than thought.</p>
+            <button class="cta-btn" onclick="document.querySelector('[onclick*=\'download\']').click()">Get SnowOS</button>
+        </div>
+    </section>
+
+    <section id="download" class="tab-content">
+        <h2 class="title">Download Center</h2>
+        <div class="card-grid">
+            <div class="card glass">
+                <img src="https://cdn-icons-png.flaticon.com" alt="ISO">
+                <h3>LiveCD ISO</h3>
+                <p>For testing in VirtualBox and burning to disks.</p>
+                <div class="stats">Downloads: <span id="iso-count">1240</span></div>
+                <a href="https://drive.google.com/uc?export=download&id=1tzfxHxLS-c31XflSoR_cTZ-baeySqDtN" class="dl-btn" onclick="startDownload('iso')">Download .ISO</a>
+            </div>
+            <div class="card glass">
+                <img src="https://cdn-icons-png.flaticon.com" alt="IMG">
+                <h3>USB Image</h3>
+                <p>Image for quick installation from a flash drive.</p>
+                <div class="stats">Downloads: <span id="usb-count">856</span></div>
+                <a href="https://drive.google.com/uc?export=download&id=1r1VateUanKWH4E2gjsPbWSdo1QKiSp5M" class="dl-btn secondary" onclick="startDownload('usb')">Download .IMG</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="docs" class="tab-content">
+        <div class="info-block glass">
+            <h2>About the system</h2>
+            <ul>
+                <li><strong>Core:</strong> Monolithic, 32-bit</li>
+                <li><strong>FS:</strong> FAT32, ISO9660</li>
+                <li><strong>UI:</strong> SnowUI 1.0</li>
+            </ul>
+        </div>
+    </section>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

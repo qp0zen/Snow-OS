@@ -1,0 +1,68 @@
+:root {
+    --blue: #00a8ff;
+    --dark-blue: #0056b3;
+    --glass: rgba(255, 255, 255, 0.7);
+}
+
+body {
+    margin: 0; font-family: 'Segoe UI', sans-serif;
+    background: #e3f2fd; color: #2c3e50;
+    overflow-x: hidden;
+}
+
+.snow-bg {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: radial-gradient(circle at top, #ffffff 0%, #e3f2fd 100%);
+    z-index: -1;
+}
+
+.glass-nav {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1rem 10%; background: var(--glass);
+    backdrop-filter: blur(15px); position: sticky; top: 0; z-index: 100;
+    border-bottom: 1px solid rgba(255,255,255,0.3);
+}
+
+.logo { font-size: 1.5rem; font-weight: bold; color: var(--dark-blue); }
+
+.tab-link {
+    background: none; border: none; padding: 10px 20px; cursor: pointer;
+    font-size: 1rem; color: #555; transition: 0.3s;
+}
+
+.tab-link.active { color: var(--blue); border-bottom: 2px solid var(--blue); }
+
+/* Контент */
+.container { max-width: 1000px; margin: 50px auto; padding: 0 20px; }
+
+.tab-content { display: none; animation: fadeIn 0.5s ease; }
+.tab-content.active { display: block; }
+
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+.hero { text-align: center; padding: 100px 0; }
+.hero h1 { font-size: 3.5rem; color: #012d5e; }
+.hero span { color: var(--blue); }
+
+.glass {
+    background: var(--glass); backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.4); border-radius: 20px; padding: 30px;
+}
+
+.card-grid { display: flex; gap: 30px; justify-content: center; margin-top: 40px; }
+.card { width: 300px; text-align: center; transition: 0.3s; }
+.card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+.card img { width: 100px; margin-bottom: 15px; }
+
+.dl-btn {
+    display: block; margin-top: 20px; padding: 12px;
+    background: var(--blue); color: white; text-decoration: none;
+    border-radius: 10px; font-weight: bold;
+}
+
+.dl-btn.secondary { background: none; border: 2px solid var(--blue); color: var(--blue); }
+
+.cta-btn {
+    padding: 15px 40px; font-size: 1.2rem; background: var(--blue);
+    color: white; border: none; border-radius: 50px; cursor: pointer;
+}
