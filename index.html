@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SnowOS — Official site</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="snow-bg"></div>
+
+<nav class="glass-nav">
+    <div class="logo">❄️ SnowOS</div>
+    <div class="nav-links">
+        <button class="tab-link active" onclick="openTab(event, 'main')">Home</button>
+        <button class="tab-link" onclick="openTab(event, 'download')">Download</button>
+        <button class="tab-link" onclick="openTab(event, 'docs')">Info</button>
+        <button class="tab-link" onclick="openTab(event, 'news')">News</button>
+    </div>
+</nav>
+
+<div class="container">
+    <section id="main" class="tab-content active">
+        <div class="hero">
+            <h1>Glacial speed. <br><span>Clean code.</span></h1>
+            <p>SnowOS — It's a next-generation operating system written in assembly language. It weighs less than a song and runs faster than thought.</p>
+            <button class="cta-btn" onclick="document.querySelector('[onclick*=\'download\']').click()">Get SnowOS</button>
+        </div>
+    </section>
+
+    <section id="download" class="tab-content">
+    <h2 class="title">Latest Release</h2>
+    <div class="glass">
+        <a href="https://www.dropbox.com/scl/fi/f9swqm2nktcgtm5jwrd36/snowos-v1.0.1.iso?rlkey=q87qqlgm3zfcodje6pkc6sjzg&st=m2t5ttek&dl=1" class="download-card">
+            <span>SnowOS <b>ISO</b></span>
+            <span>v1.0.1 →</span>
+        </a>
+        <a href="https://www.dropbox.com/scl/fi/2i1o5re43ca5fycuupr1a/snowos-v1.0.1.img?rlkey=u3ko2f0j0smd1wkhuo04g29v2&st=spb1ikky&dl=1" class="download-card">
+            <span>SnowOS <b>IMG</b></span>
+            <span>v1.0.1 →</span>
+        </a>
+    </div>
+
+    <h2 class="title">Previous versions</h2>
+    <div style="opacity: 0.7">
+        <a href="https://www.dropbox.com/scl/fi/m717pbyzvwhdei0chsxck/snowos-v1.0.0.iso?rlkey=a5b59vmqr8i50doq9ezlw6hvu&st=54kcch3x&dl=1" class="download-card">
+            <span>SnowOS ISO (1.0.0)</span>
+            <span>Download</span>
+        </a>
+        <a href="https://www.dropbox.com/scl/fi/dx91a70h539o8aaq8w02w/snowos-v1.0.0.img?rlkey=udsxn4d22m7fvk3d8ztopq98w&st=xgpaqe7t&dl=1" class="download-card">
+            <span>SnowOS IMG (1.0.0)</span>
+            <span>Download</span>
+        </a>
+    </div>
+    </section>
+
+    <section id="docs" class="tab-content">
+        <div class="info-block glass">
+            <h2>About the system</h2>
+            <ul>
+                <li><strong>Core:</strong> Monolithic, 32-bit</li>
+                <li><strong>FS:</strong> FAT32, ISO9660</li>
+                <li><strong>UI:</strong> SnowUI 1.0</li>
+                <li><strong>BIOS:</strong> Legacy</li>
+            </ul>
+        </div>
+    </section>
+    <section id="news" class="tab-content">
+        <div class="info-block glass">
+            <h2>SnowOS Version 1.0.1</h2>
+            <ul>
+                <li><strong>Optimization:</strong> We switched from Assembler to C</li>
+                <br>
+                What did we optimize?
+                We optimized the bootloader and the kernel.
+            </ul>
+            <h2>Other</h2>
+            <ul>
+                <li><strong>Telegram</strong> We also created our own Telegram channel: @snowos_tg</li>
+            </ul>
+        </div>
+    </section>
+</div>
+
+<canvas id="snow-canvas" style="position: fixed; top: 0; left: 0; pointer-events: none; z-index: 1;"></canvas>
+
+<script>
+    const canvas = document.getElementById('snow-canvas');
+    const ctx = canvas.getContext('2d');
+    let width, height, snowflakes = [];
+
+    function init() {
+        width = window.innerWidth;
+        height = window.innerHeight;
+        canvas.width = width;
+        canvas.height = height;
+        snowflakes = [];
+        for (let i = 0; i < 150; i++) {
+            snowflakes.push({
+                x: Math.random() * width,
+                y: Math.random() * height,
+                r: Math.random() * 3 + 1,
+                d: Math.random() * 1,
+                a: Math.random() * 5
+            });
+        }
+    }
+
+    function draw() {
+        ctx.clearRect(0, 0, width, height);
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
+        ctx.beginPath();
+        for (let i = 0; i < snowflakes.length; i++) {
+            let p = snowflakes[i];
+            ctx.moveTo(p.x, p.y);
+            ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2, true);
+        }
+        ctx.fill();
+        update();
+    }
+
+    function update() {
+        for (let i = 0; i < snowflakes.length; i++) {
+            let p = snowflakes[i];
+            p.y += Math.cos(p.a) + 1 + p.r / 2;
+            p.x += Math.sin(p.a) * 2;
+            if (p.x > width + 5 || p.x < -5 || p.y > height) {
+                snowflakes[i] = { x: Math.random() * width, y: -10, r: p.r, d: p.d, a: p.a };
+            }
+        }
+    }
+
+    window.addEventListener('resize', init);
+    init();
+    setInterval(draw, 30);
+</script>
+<script src="script.js"></script>
+</body>
+</html>
